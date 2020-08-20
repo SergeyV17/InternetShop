@@ -68,6 +68,10 @@ namespace Shop.Data.Models
             _dbContext.SaveChanges();
         }
 
+        /// <summary>
+        /// Метод увеличивающий количество товара на 1 единицу
+        /// </summary>
+        /// <param name="good">товар</param>
         public void AddItemQuantity(Good good)
         {
             if (good == null) return;
@@ -79,6 +83,10 @@ namespace Shop.Data.Models
             _dbContext.SaveChanges();
         }
 
+        /// <summary>
+        /// Метод уменьшающий количество товара на 1 единицу
+        /// </summary>
+        /// <param name="good">товар</param>
         public void RemoveItemQuantity(Good good)
         {
             if (good == null) return;
@@ -104,6 +112,10 @@ namespace Shop.Data.Models
             return _dbContext.ShopCartItem.Where(i => i.CartId == Id).Include(i => i.Good).ToList();
         }
 
+        /// <summary>
+        /// Метод подсчёта стоимости товаров в корзине
+        /// </summary>
+        /// <returns>стоимость</returns>
         private decimal GetCartPurchase()
         {
             return Enumerable.Sum(_dbContext.ShopCartItem.Where(i => i.CartId == Id), item => item.Good.Value * item.Quantity);

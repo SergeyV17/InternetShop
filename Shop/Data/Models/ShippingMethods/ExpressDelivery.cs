@@ -2,6 +2,9 @@
 
 namespace Shop.Data.Models.ShippingMethods
 {
+    /// <summary>
+    /// Класс курьерской доставки
+    /// </summary>
     public class ExpressDelivery : IShippingMethod
     {
         public string Name => "Курьерская доставка";

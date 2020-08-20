@@ -2,6 +2,9 @@
 
 namespace Shop.Data.Models.ShippingMethods
 {
+    /// <summary>
+    /// Класс доставки почтой России
+    /// </summary>
     public class MailDelivery : IShippingMethod
     {
         public string Name => "Почта России";

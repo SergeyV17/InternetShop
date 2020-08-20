@@ -30,11 +30,5 @@ namespace Shop.Data.Models
         [DataType(DataType.EmailAddress)]
         [StringLength(20)]
         public string Email { get; set; }
-
-        public decimal Value { get; set; }
-
-        [BindNever]
-        [ScaffoldColumn(false)]
-        public DateTime OrderDateTime { get; set; }
     }
 }

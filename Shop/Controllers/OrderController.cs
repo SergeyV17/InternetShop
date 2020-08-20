@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Data.Models;
-using Shop.Data.Models.Interfaces;
 
 namespace Shop.Controllers
 {
@@ -10,24 +9,31 @@ namespace Shop.Controllers
     /// </summary>
     public class OrderController: Controller
     {
-        private readonly ICreateOrder _createOrder;
         private readonly Cart _cart;
 
         /// <summary>
         /// Конструктор заказа
         /// </summary>
         /// <param name="cart"></param>
-        public OrderController(ICreateOrder createOrder, Cart cart)
+        public OrderController(Cart cart)
         {
-            _createOrder = createOrder;
             _cart = cart;
         }
 
+        /// <summary>
+        /// Метод перенаправляющий на страницу с оформлением заказа
+        /// </summary>
+        /// <returns></returns>
         public IActionResult CheckOut()
         {
             return View();
         }
 
+        /// <summary>
+        /// Метод пост перенаправляющий на страницу с оформлением заказа
+        /// </summary>
+        /// <param name="order">заказ</param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult CheckOut(Order order)
         {
@@ -36,13 +42,16 @@ namespace Shop.Controllers
 
             if (ModelState.IsValid)
             {
-                _createOrder.CreateNewOrder(order);
                 return RedirectToAction("Complete");
             }
 
             return View(order);
         }
 
+        /// <summary>
+        /// Метод перенаправляющий на страницу с уведомлением о завершении обработки заказа
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Complete()
         {
             ViewBag.Message = "Закакз успешно обработан";

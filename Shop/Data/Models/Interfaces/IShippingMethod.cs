@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Shop.Data.Models.Interfaces
+﻿namespace Shop.Data.Models.Interfaces
 {
+    /// <summary>
+    /// Интерфейс определяющий способ доставки
+    /// </summary>
     public interface IShippingMethod
     {
         public string Name { get;  }

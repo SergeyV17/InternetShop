@@ -53,7 +53,7 @@ namespace Shop.Controllers
                 _ => new MailDelivery()
             };
 
-            var obj = new ShopCartViewModel(_cart, _shippingMethod);
+            var obj = new CartViewModel(_cart, _shippingMethod);
 
             return View(obj);
         }

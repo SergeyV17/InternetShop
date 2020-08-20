@@ -33,7 +33,6 @@ namespace Shop
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(_configurationRoot.GetConnectionString("DefaultConnection")));
             services.AddTransient<IRepository, Repository>();
-            services.AddTransient<ICreateOrder, CreateOrder>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(sp => Cart.GetCart((sp)));
@@ -55,12 +54,6 @@ namespace Shop
             {
                 routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{Id?}");
             });
-
-            using (var scope = app.ApplicationServices.CreateScope())
-            {
-                AppDbContext context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                GenerateDbObjects.Initial(context);
-            }
         }
     }
 }
