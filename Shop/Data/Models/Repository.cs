@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Shop.Data.Models.Interfaces;
+using Shop.Data.Models.ShippingMethods;
 
 namespace Shop.Data.Models
 {
@@ -18,9 +19,18 @@ namespace Shop.Data.Models
         public Repository(AppDbContext dbContext)
         {
             _dbContext = dbContext;
+
+            ShippingMethods = new List<IShippingMethod>()
+            {
+                new MailDelivery(),
+                new ExpressDelivery(),
+                new Pickup()
+            };
         }
 
         public IEnumerable<Good> Goods => _dbContext.Goods;
         public Good GetGood(int goodId) => _dbContext.Goods.FirstOrDefault(g => g.Id == goodId);
+
+        public IEnumerable<IShippingMethod> ShippingMethods { get; }
     }
 }

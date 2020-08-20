@@ -1,34 +1,34 @@
 ﻿<!DOCTYPE html>
 
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <link href="~/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="~/css/defaultstyle.css" rel="stylesheet" type="text/css"/>
-        <title>@ViewBag.Title</title>
-    </head>
-    <body>
-        <header>
-            <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" asp-controller="Home" asp-action="Index">Главная<span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="ShopCart" asp-action="Index">Корзина</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <div class ="container mt-5">
-            @RenderBody()
-        </div>
-        <footer class="container">
-            <p class="float-right"></p>
-            <p>© 1901-2020 Company, Inc.</p>
-        </footer>
-        <script src="js/bootstrap.min.js"></script>
-    </body>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/roundbutton.css" rel="stylesheet" type="text/css" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-controller="Home" asp-action="Index">Главная<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Cart" asp-action="Index">Корзина</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container mt-5">
+        @RenderBody()
+    </div>
+    <footer class="container">
+        <p class="float-right"></p>
+        <p>© 1901-2020 Company, Inc.</p>
+    </footer>
+    <script src="js/bootstrap.min.js"></script>
+</body>
 </html>

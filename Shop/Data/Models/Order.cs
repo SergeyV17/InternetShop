@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Shop.Data.Models.Interfaces;
 
 namespace Shop.Data.Models
 {
@@ -34,15 +31,10 @@ namespace Shop.Data.Models
         [StringLength(20)]
         public string Email { get; set; }
 
-        public IEnumerable<OrderDetail> OrderDetails { get; set; }
-
         public decimal Value { get; set; }
 
         [BindNever]
         [ScaffoldColumn(false)]
         public DateTime OrderDateTime { get; set; }
-
-        [NotMapped]
-        public IShippingMethod ShippingMethod { get; set; }
     }
 }

@@ -10,10 +10,17 @@ using Shop.Data.Models.Interfaces;
 
 namespace Shop
 {
+    /// <summary>
+    /// Класс запуска приложения
+    /// </summary>
     public class Startup
     {
         private readonly IConfigurationRoot _configurationRoot;
 
+        /// <summary>
+        /// Конструктор запуска
+        /// </summary>
+        /// <param name="env">окружение</param>
         public Startup(IWebHostEnvironment env)
         {
             _configurationRoot = new ConfigurationBuilder().SetBasePath(env.ContentRootPath)
@@ -26,10 +33,10 @@ namespace Shop
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(_configurationRoot.GetConnectionString("DefaultConnection")));
             services.AddTransient<IRepository, Repository>();
-            services.AddTransient<IOrders, Orders>();
+            services.AddTransient<ICreateOrder, CreateOrder>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped(sp => ShopCart.GetCart((sp)));
+            services.AddScoped(sp => Cart.GetCart((sp)));
 
             services.AddMvc(option => option.EnableEndpointRouting = false);
             services.AddMemoryCache();
@@ -43,7 +50,6 @@ namespace Shop
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseSession();
-            //app.UseMvcWithDefaultRoute();
 
             app.UseMvc(routes =>
             {
@@ -53,7 +59,7 @@ namespace Shop
             using (var scope = app.ApplicationServices.CreateScope())
             {
                 AppDbContext context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                DbObjects.Initial(context);
+                GenerateDbObjects.Initial(context);
             }
         }
     }

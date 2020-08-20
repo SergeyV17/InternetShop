@@ -1,5 +1,11 @@
 ﻿@model HomeViewModel
 
+<h3>Выберите файл для загрузки</h3>
+<form class="mb-5" asp-action="ReadXml" asp-controller="Home" method="post" enctype="multipart/form-data">
+    <input class="btn-group-toggle" type="file" accept=".xml" name="uploadedFile" /><br>
+    <input type="submit" value="Загрузить" />
+</form>
+
 <h1>Все товары</h1>
 <div class="row mt-5 mb-2">
     @{

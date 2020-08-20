@@ -1,0 +1,38 @@
+﻿@model ShopCartViewModel
+
+<head>
+    <title>@ViewBag.Title</title>
+</head>
+<div class="container">
+    @{
+        foreach (var item in Model.Cart.Items)
+        {
+            <div class="alert alert-warning mt-3">
+                <b>Товар: </b>@item.Good.Name<br />
+                <b>Цена: </b>@item.Good.Value.ToString("C")<br />
+
+                <form method="post">
+                    <b>
+                        Количество:
+                        <a class="good__button" asp-action="AddQuantity" asp-route-id="@item.Good.Id">
+                            <span>+</span>
+                        </a>
+                        <span> @item.Quantity </span>
+                        <a class="good__button" asp-action="RemoveQuantity" asp-route-id="@item.Good.Id">
+                            <span>-</span>
+                        </a>
+                    </b>
+                </form>
+            </div>
+        }
+    }
+    <hr />
+    
+    <form action="~/Cart/Index" method="post">
+        <select asp-items="@((SelectList)ViewData["shippingMethods"])" onchange="this.form.submit()" name="value"></select>
+    </form>
+
+    <h4 class="mt-3 mb-2"><b>Доставка: @Model.ShippingMethod.Value.ToString("C")</b></h4>
+    <h4 class="mt-2 mb-2"><b>Итого к оплате: @Model.Total.ToString("C")</b></h4>
+    <a class="btn btn-dark mt-2 mb-2" asp-controller="Order" asp-action="CheckOut">Перейти к оформлению</a>
+</div>

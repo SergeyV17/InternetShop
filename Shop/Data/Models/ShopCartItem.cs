@@ -7,7 +7,7 @@
     {
         public int Id { get; set; }
         public Good Good { get; set; }
-        public decimal Value { get; set; }
-        public string ShopCartId { get; set; }
+        public string CartId { get; set; }
+        public int Quantity { get; set; }
     }
 }

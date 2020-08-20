@@ -5,15 +5,22 @@ using Shop.Data.Models.Interfaces;
 
 namespace Shop.Controllers
 {
+    /// <summary>
+    /// Контроллер страницы заказа
+    /// </summary>
     public class OrderController: Controller
     {
-        private readonly IOrders _orders;
-        private readonly ShopCart _shopCart;
+        private readonly ICreateOrder _createOrder;
+        private readonly Cart _cart;
 
-        public OrderController(IOrders orders, ShopCart shopCart)
+        /// <summary>
+        /// Конструктор заказа
+        /// </summary>
+        /// <param name="cart"></param>
+        public OrderController(ICreateOrder createOrder, Cart cart)
         {
-            _orders = orders;
-            _shopCart = shopCart;
+            _createOrder = createOrder;
+            _cart = cart;
         }
 
         public IActionResult CheckOut()
@@ -24,12 +31,12 @@ namespace Shop.Controllers
         [HttpPost]
         public IActionResult CheckOut(Order order)
         {
-            if (!_shopCart.Items.Any())
+            if (!_cart.Items.Any())
                 ModelState.AddModelError("","В корзине пусто");
 
             if (ModelState.IsValid)
             {
-                _orders.CreateOrder(order);
+                _createOrder.CreateNewOrder(order);
                 return RedirectToAction("Complete");
             }
 

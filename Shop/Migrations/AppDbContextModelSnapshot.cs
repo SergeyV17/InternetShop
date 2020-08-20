@@ -27,11 +27,9 @@ namespace Shop.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Articul")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Value")
@@ -42,7 +40,7 @@ namespace Shop.Migrations
                     b.ToTable("Goods");
                 });
 
-            modelBuilder.Entity("Shop.Data.Models.Order", b =>
+            modelBuilder.Entity("Shop.Data.Models.CreateOrder", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -77,7 +75,7 @@ namespace Shop.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Order");
+                    b.ToTable("CreateOrder");
                 });
 
             modelBuilder.Entity("Shop.Data.Models.OrderDetail", b =>
@@ -110,14 +108,14 @@ namespace Shop.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("CartId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("GoodId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ShopCartId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Value")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -128,7 +126,7 @@ namespace Shop.Migrations
 
             modelBuilder.Entity("Shop.Data.Models.OrderDetail", b =>
                 {
-                    b.HasOne("Shop.Data.Models.Order", null)
+                    b.HasOne("Shop.Data.Models.CreateOrder", null)
                         .WithMany("OrderDetails")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)

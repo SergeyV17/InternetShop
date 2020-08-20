@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Shop.Migrations
 {
-    public partial class Initialize : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,8 +13,8 @@ namespace Shop.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Articul = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(nullable: false),
+                    Articul = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
                     Value = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
@@ -23,7 +23,7 @@ namespace Shop.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Order",
+                name: "CreateOrder",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -48,8 +48,8 @@ namespace Shop.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     GoodId = table.Column<int>(nullable: true),
-                    Value = table.Column<decimal>(nullable: false),
-                    ShopCartId = table.Column<string>(nullable: true)
+                    CartId = table.Column<string>(nullable: true),
+                    Quantity = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -78,7 +78,7 @@ namespace Shop.Migrations
                     table.ForeignKey(
                         name: "FK_OrderDetail_Order_OrderId",
                         column: x => x.OrderId,
-                        principalTable: "Order",
+                        principalTable: "CreateOrder",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -103,7 +103,7 @@ namespace Shop.Migrations
                 name: "ShopCartItem");
 
             migrationBuilder.DropTable(
-                name: "Order");
+                name: "CreateOrder");
 
             migrationBuilder.DropTable(
                 name: "Goods");

@@ -9,6 +9,7 @@ namespace Shop.Data.Models.Interfaces
     {
         IEnumerable<Good> Goods { get; }
         Good GetGood(int goodId);
+        public IEnumerable<IShippingMethod> ShippingMethods { get; }
     }
 }
     

@@ -1,30 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Shop.Data.Models.Interfaces;
 
 namespace Shop.Data.Models
 {
-    public class Orders: IOrders
+    public class CreateOrder: ICreateOrder
     {
         private readonly AppDbContext _dbContext;
-        private readonly ShopCart _shopCart;
+        private readonly Cart _cart;
 
-        public Orders(AppDbContext dbContext, ShopCart shopCart)
+        public CreateOrder(AppDbContext dbContext, Cart cart)
         {
             _dbContext = dbContext;
-            _shopCart = shopCart;
+            _cart = cart;
         }
 
-        public void CreateOrder(Order order)
+        public void CreateNewOrder(Order order)
         {
             order.OrderDateTime = DateTime.Now;
             _dbContext.Order.Add(order);
 
             _dbContext.SaveChanges();
 
-            var items = _shopCart.Items;
+            var items = _cart.Items;
 
             foreach (var item in items)
             {
