@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Goods>
+  <Good Name="WellDone" Value="547.45" Articul="78FGH8" Currency="RUR">
+    <Producer Name="Ariston" Code="ARST"></Producer>
+    <GoodType Name="Скороварка" Code="Cook"></GoodType>
+  </Good>
+  <Good Name="Fenix" Value="1547.45" Articul="89ghtX" Currency="RUR">
+    <Producer Name="Electrolux" Code="ELCX"></Producer>
+    <GoodType Name="Светильник" Code="Light"></GoodType>
+  </Good>
+  <Good Name="D2055D" Value="130" Articul="XFGH67" Currency="EUR">
+    <Producer Name="Airoswiss" Code="AOS"></Producer>
+    <GoodType Name="Мойка воздуха" Code="Home"></GoodType>
+  </Good>
+</Goods>
